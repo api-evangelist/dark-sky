@@ -1,0 +1,19 @@
+name: Dark Sky Plans and Pricing
+description: Pricing tiers for the Dark Sky API (service ended March 31, 2023; now part of Apple WeatherKit).
+url: https://darksky.net/dev/docs
+plans:
+  - name: Free Tier
+    description: First 1,000 API calls per day per API key at no charge.
+    free: true
+    calls_per_day: 1000
+    price_per_call: 0.00
+  - name: Pay As You Go
+    description: Calls beyond the daily 1,000 free threshold billed at a flat per-call rate with no monthly commitment.
+    free: false
+    calls_per_day: unlimited
+    price_per_call: 0.0001
+    currency: USD
+notes: >
+  The Dark Sky API was acquired by Apple in 2020. New developer registrations
+  were closed on March 31, 2020, and the API was permanently shut down on
+  March 31, 2023. Apple's WeatherKit REST API is the successor service.

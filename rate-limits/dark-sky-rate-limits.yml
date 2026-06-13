@@ -1,0 +1,28 @@
+name: Dark Sky Rate Limits
+description: Rate limiting rules that applied to the Dark Sky API before its shutdown on March 31, 2023.
+url: https://darksky.net/dev/docs
+limits:
+  - name: Free Daily Calls
+    description: Each API key received 1,000 free API calls per calendar day. Requests beyond this threshold incurred a per-call charge.
+    window: daily
+    limit: 1000
+    scope: api_key
+    enforcement: billing_trigger
+  - name: No Hard Request Cap
+    description: >
+      Dark Sky did not enforce a hard rate limit beyond the free daily quota.
+      Additional calls were permitted and billed at $0.0001 per call rather
+      than being rejected.
+    window: daily
+    limit: unlimited
+    scope: api_key
+    enforcement: billing
+monitoring:
+  description: >
+    Usage could be monitored through the Dark Sky developer console at
+    darksky.net/dev/console. Each API response also returned a
+    X-Forecast-API-Calls header indicating the number of calls made today.
+  header: X-Forecast-API-Calls
+notes: >
+  The Dark Sky API was shut down on March 31, 2023. These limits are
+  documented for historical reference. Apple WeatherKit is the successor API.

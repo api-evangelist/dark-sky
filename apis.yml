@@ -1,0 +1,75 @@
+aid: dark-sky
+name: Dark Sky
+description: >
+  Dark Sky is a hyperlocal weather forecast REST API (now part of Apple)
+  that provided minute-by-minute precipitation forecasts, hourly weather
+  conditions, and multi-day outlooks powered by machine-learning models.
+  The API delivered real-time and historical weather data for any latitude
+  and longitude worldwide, including current conditions, 60-minute
+  minutely precipitation intensity, 48-hour hourly forecasts, and 7-day
+  daily summaries. It was acquired by Apple in March 2020; new developer
+  signups closed immediately, and the API was permanently shut down on
+  March 31, 2023. Apple's WeatherKit REST API is the successor service.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/dark-sky/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Weather
+  - Forecast
+  - Hyperlocal
+  - Precipitation
+  - Machine Learning
+  - REST
+  - Apple
+apis:
+  - name: Dark Sky Forecast API
+    description: >
+      Returns the current weather conditions and forecasts for a given
+      latitude/longitude, including current observations, minute-by-minute
+      precipitation for the next hour, hourly data for the next 48 hours,
+      and daily summaries for the next 7 days.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://darksky.net/dev/docs
+    baseURL: https://api.darksky.net
+    tags:
+      - Weather
+      - Forecast
+      - Precipitation
+      - Hyperlocal
+    properties:
+      - type: Documentation
+        url: https://darksky.net/dev/docs
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/dark-sky/refs/heads/main/openapi.yml
+    contact:
+      - FN: Dark Sky (Apple)
+        url: https://darksky.net/dev
+        email: ''
+common:
+  - type: Website
+    url: https://darksky.net
+  - type: Documentation
+    url: https://darksky.net/dev/docs
+  - type: GitHubOrg
+    url: https://github.com/darkskyapp
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/dark-sky
+  - type: Blog
+    url: https://blog.darksky.net
+  - type: Pricing
+    url: https://darksky.net/dev
+  - type: StatusPage
+    url: https://darksky.net/dev/console
+  - type: X
+    url: https://x.com/darkskyapp
+  - type: Plans
+    url: plans/dark-sky-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/dark-sky-rate-limits.yml
+  - type: FinOps
+    url: finops/dark-sky-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,39 @@
+name: Dark Sky FinOps
+description: Financial operations guidance for the Dark Sky API (historical; service ended March 31, 2023).
+url: https://darksky.net/dev/docs
+cost_model:
+  type: freemium_pay_as_you_go
+  free_units: 1000
+  free_unit_type: api_calls_per_day
+  paid_unit: api_call
+  paid_unit_price: 0.0001
+  paid_unit_currency: USD
+examples:
+  - scenario: Low-traffic personal project
+    daily_calls: 500
+    monthly_estimate_usd: 0.00
+    notes: Stays within the 1,000 free daily calls.
+  - scenario: Small application
+    daily_calls: 5000
+    monthly_estimate_usd: 12.00
+    notes: 4,000 paid calls/day × $0.0001 × 30 days = $12.00/month.
+  - scenario: Mid-scale application
+    daily_calls: 50000
+    monthly_estimate_usd: 147.00
+    notes: 49,000 paid calls/day × $0.0001 × 30 days = $147.00/month.
+  - scenario: High-traffic application
+    daily_calls: 500000
+    monthly_estimate_usd: 1497.00
+    notes: 499,000 paid calls/day × $0.0001 × 30 days = $1,497.00/month.
+cost_control:
+  - tip: Cache API responses to reduce duplicate calls for the same location and time window.
+  - tip: Use the exclude query parameter to omit unneeded data blocks (minutely, hourly, daily, alerts) and reduce payload size.
+  - tip: Monitor daily usage via the developer console at darksky.net/dev/console or inspect the X-Forecast-API-Calls response header.
+  - tip: Batch locations where possible using the Time Machine endpoint rather than making individual real-time forecast calls.
+successor:
+  name: Apple WeatherKit
+  url: https://developer.apple.com/weatherkit/
+  notes: >
+    Apple acquired Dark Sky in 2020 and replaced the API with WeatherKit.
+    WeatherKit offers 500,000 free API calls per month under the Apple
+    Developer Program membership ($99/year).
