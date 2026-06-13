@@ -1,0 +1,220 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "darksky": "https://darksky.net/dev/docs#",
+
+    "latitude": {
+      "@id": "schema:latitude",
+      "@type": "xsd:double"
+    },
+    "longitude": {
+      "@id": "schema:longitude",
+      "@type": "xsd:double"
+    },
+    "timezone": {
+      "@id": "schema:timeZone",
+      "@type": "xsd:string"
+    },
+    "currently": {
+      "@id": "darksky:currently"
+    },
+    "minutely": {
+      "@id": "darksky:minutely"
+    },
+    "hourly": {
+      "@id": "darksky:hourly"
+    },
+    "daily": {
+      "@id": "darksky:daily"
+    },
+    "alerts": {
+      "@id": "darksky:alerts",
+      "@container": "@set"
+    },
+    "flags": {
+      "@id": "darksky:flags"
+    },
+    "time": {
+      "@id": "schema:startDate",
+      "@type": "xsd:integer"
+    },
+    "summary": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "icon": {
+      "@id": "darksky:icon",
+      "@type": "xsd:string"
+    },
+    "temperature": {
+      "@id": "schema:value",
+      "@type": "xsd:double"
+    },
+    "apparentTemperature": {
+      "@id": "darksky:apparentTemperature",
+      "@type": "xsd:double"
+    },
+    "temperatureHigh": {
+      "@id": "darksky:temperatureHigh",
+      "@type": "xsd:double"
+    },
+    "temperatureLow": {
+      "@id": "darksky:temperatureLow",
+      "@type": "xsd:double"
+    },
+    "temperatureMax": {
+      "@id": "darksky:temperatureMax",
+      "@type": "xsd:double"
+    },
+    "temperatureMin": {
+      "@id": "darksky:temperatureMin",
+      "@type": "xsd:double"
+    },
+    "dewPoint": {
+      "@id": "darksky:dewPoint",
+      "@type": "xsd:double"
+    },
+    "humidity": {
+      "@id": "darksky:humidity",
+      "@type": "xsd:double"
+    },
+    "pressure": {
+      "@id": "darksky:pressure",
+      "@type": "xsd:double"
+    },
+    "windSpeed": {
+      "@id": "darksky:windSpeed",
+      "@type": "xsd:double"
+    },
+    "windGust": {
+      "@id": "darksky:windGust",
+      "@type": "xsd:double"
+    },
+    "windBearing": {
+      "@id": "darksky:windBearing",
+      "@type": "xsd:integer"
+    },
+    "cloudCover": {
+      "@id": "darksky:cloudCover",
+      "@type": "xsd:double"
+    },
+    "uvIndex": {
+      "@id": "darksky:uvIndex",
+      "@type": "xsd:integer"
+    },
+    "visibility": {
+      "@id": "darksky:visibility",
+      "@type": "xsd:double"
+    },
+    "ozone": {
+      "@id": "darksky:ozone",
+      "@type": "xsd:double"
+    },
+    "precipIntensity": {
+      "@id": "darksky:precipIntensity",
+      "@type": "xsd:double"
+    },
+    "precipProbability": {
+      "@id": "darksky:precipProbability",
+      "@type": "xsd:double"
+    },
+    "precipType": {
+      "@id": "darksky:precipType",
+      "@type": "xsd:string"
+    },
+    "precipAccumulation": {
+      "@id": "darksky:precipAccumulation",
+      "@type": "xsd:double"
+    },
+    "moonPhase": {
+      "@id": "darksky:moonPhase",
+      "@type": "xsd:double"
+    },
+    "sunriseTime": {
+      "@id": "schema:sunriseTime",
+      "@type": "xsd:integer"
+    },
+    "sunsetTime": {
+      "@id": "schema:sunsetTime",
+      "@type": "xsd:integer"
+    },
+    "nearestStormDistance": {
+      "@id": "darksky:nearestStormDistance",
+      "@type": "xsd:double"
+    },
+    "nearestStormBearing": {
+      "@id": "darksky:nearestStormBearing",
+      "@type": "xsd:integer"
+    },
+    "title": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "regions": {
+      "@id": "schema:areaServed",
+      "@container": "@set"
+    },
+    "severity": {
+      "@id": "darksky:severity",
+      "@type": "xsd:string"
+    },
+    "expires": {
+      "@id": "schema:expires",
+      "@type": "xsd:integer"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "uri": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "sources": {
+      "@id": "darksky:sources",
+      "@container": "@set"
+    },
+    "units": {
+      "@id": "darksky:units",
+      "@type": "xsd:string"
+    },
+    "data": {
+      "@id": "darksky:data",
+      "@container": "@list"
+    }
+  },
+  "@graph": [
+    {
+      "@id": "darksky:ForecastResponse",
+      "@type": "schema:DataFeed",
+      "schema:name": "Dark Sky Forecast Response",
+      "schema:description": "Top-level response from the Dark Sky Forecast API containing weather data for a geographic location.",
+      "schema:provider": {
+        "@id": "https://darksky.net",
+        "@type": "schema:Organization",
+        "schema:name": "Dark Sky (Apple)",
+        "schema:url": "https://darksky.net/dev"
+      }
+    },
+    {
+      "@id": "darksky:DataPoint",
+      "@type": "schema:PropertyValue",
+      "schema:name": "Dark Sky Data Point",
+      "schema:description": "A single weather observation or forecast at a point in time, containing properties such as temperature, humidity, wind, and precipitation."
+    },
+    {
+      "@id": "darksky:DataBlock",
+      "@type": "schema:DataFeed",
+      "schema:name": "Dark Sky Data Block",
+      "schema:description": "A collection of data points spanning a period of time: minute-by-minute (minutely), hour-by-hour (hourly), or day-by-day (daily)."
+    },
+    {
+      "@id": "darksky:Alert",
+      "@type": "schema:Warning",
+      "schema:name": "Dark Sky Weather Alert",
+      "schema:description": "A severe weather alert issued by a governmental weather authority for a geographic area."
+    }
+  ]
+}

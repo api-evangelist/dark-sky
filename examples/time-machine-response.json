@@ -1,0 +1,92 @@
+{
+  "latitude": 37.8267,
+  "longitude": -122.4233,
+  "timezone": "America/Los_Angeles",
+  "offset": -8,
+  "currently": {
+    "time": 1428364800,
+    "summary": "Clear",
+    "icon": "clear-day",
+    "precipIntensity": 0,
+    "precipProbability": 0,
+    "temperature": 68.4,
+    "apparentTemperature": 68.4,
+    "dewPoint": 42.5,
+    "humidity": 0.38,
+    "pressure": 1017.2,
+    "windSpeed": 5.1,
+    "windGust": 9.3,
+    "windBearing": 300,
+    "cloudCover": 0.0,
+    "uvIndex": 5,
+    "visibility": 10,
+    "ozone": 296.7
+  },
+  "hourly": {
+    "summary": "Clear throughout the day.",
+    "icon": "clear-day",
+    "data": [
+      {
+        "time": 1428364800,
+        "summary": "Clear",
+        "icon": "clear-day",
+        "precipIntensity": 0,
+        "precipProbability": 0,
+        "temperature": 68.4,
+        "apparentTemperature": 68.4,
+        "dewPoint": 42.5,
+        "humidity": 0.38,
+        "pressure": 1017.2,
+        "windSpeed": 5.1,
+        "windGust": 9.3,
+        "windBearing": 300,
+        "cloudCover": 0.0,
+        "uvIndex": 5,
+        "visibility": 10,
+        "ozone": 296.7
+      }
+    ]
+  },
+  "daily": {
+    "summary": "Clear throughout the day.",
+    "icon": "clear-day",
+    "data": [
+      {
+        "time": 1428336000,
+        "summary": "Clear throughout the day.",
+        "icon": "clear-day",
+        "sunriseTime": 1428358320,
+        "sunsetTime": 1428404580,
+        "moonPhase": 0.47,
+        "precipIntensity": 0,
+        "precipIntensityMax": 0,
+        "precipProbability": 0,
+        "temperatureHigh": 72.3,
+        "temperatureHighTime": 1428386400,
+        "temperatureLow": 52.1,
+        "temperatureLowTime": 1428444000,
+        "dewPoint": 41.2,
+        "humidity": 0.37,
+        "pressure": 1017.5,
+        "windSpeed": 4.8,
+        "windGust": 11.2,
+        "windGustTime": 1428400000,
+        "windBearing": 295,
+        "cloudCover": 0.02,
+        "uvIndex": 7,
+        "uvIndexTime": 1428379200,
+        "visibility": 10,
+        "ozone": 295.4,
+        "temperatureMin": 51.8,
+        "temperatureMinTime": 1428357600,
+        "temperatureMax": 72.3,
+        "temperatureMaxTime": 1428386400
+      }
+    ]
+  },
+  "flags": {
+    "sources": ["isd", "madis", "darksky"],
+    "nearest-station": 1.24,
+    "units": "us"
+  }
+}

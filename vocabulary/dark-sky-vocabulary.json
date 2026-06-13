@@ -1,0 +1,160 @@
+{
+  "title": "Dark Sky API Vocabulary",
+  "description": "Domain vocabulary and glossary for the Dark Sky Forecast API.",
+  "version": "1.0.0",
+  "source": "https://darksky.net/dev/docs",
+  "terms": [
+    {
+      "term": "data point",
+      "definition": "An object containing various properties each representing the average (or maximum, or minimum) of a particular weather phenomenon occurring during a period of time. All properties are optional."
+    },
+    {
+      "term": "data block",
+      "definition": "An object containing a human-readable summary and an array of data points for a given time period (minutely, hourly, or daily)."
+    },
+    {
+      "term": "currently",
+      "definition": "A data point containing the current weather conditions at the requested location."
+    },
+    {
+      "term": "minutely",
+      "definition": "A data block containing minute-by-minute weather data for the next hour. Not always available."
+    },
+    {
+      "term": "hourly",
+      "definition": "A data block containing hour-by-hour weather data for the next 48 hours (or 168 hours when extended)."
+    },
+    {
+      "term": "daily",
+      "definition": "A data block containing day-by-day weather data for the next 7 days."
+    },
+    {
+      "term": "alerts",
+      "definition": "An array of alert objects representing severe weather alerts issued for the requested location by governmental weather authorities."
+    },
+    {
+      "term": "flags",
+      "definition": "An object containing metadata about the response, including the list of weather data sources used."
+    },
+    {
+      "term": "Time Machine",
+      "definition": "A Dark Sky API request that returns historical or forecast weather data for a specific point in time identified by a Unix timestamp or ISO 8601 datetime."
+    },
+    {
+      "term": "forecast",
+      "definition": "A predicted weather condition for a future time, as distinguished from current or historical observed conditions."
+    },
+    {
+      "term": "hyperlocal",
+      "definition": "Weather data with very high geographic precision (down to 0.001° of latitude and longitude), enabling block-level forecasts rather than city-wide averages."
+    },
+    {
+      "term": "precipIntensity",
+      "definition": "The intensity of precipitation in the requested units (inches/hour for us/uk2/ca; mm/hour for si). A value of 0 indicates no precipitation."
+    },
+    {
+      "term": "precipProbability",
+      "definition": "The probability of precipitation occurring, expressed as a value between 0 and 1 (inclusive)."
+    },
+    {
+      "term": "precipType",
+      "definition": "The type of precipitation occurring. Possible values: rain, snow, sleet. Only defined when precipIntensity > 0."
+    },
+    {
+      "term": "precipAccumulation",
+      "definition": "The amount of snowfall accumulation expected during the period, in inches (us/uk2/ca) or centimeters (si)."
+    },
+    {
+      "term": "apparentTemperature",
+      "definition": "A representation of the apparent (or 'feels like') temperature, accounting for wind chill (when temperature < 50°F) or heat index (when temperature > 80°F), in the requested units."
+    },
+    {
+      "term": "dewPoint",
+      "definition": "The dew point — the temperature to which air must be cooled to become saturated with water vapor — in the requested units."
+    },
+    {
+      "term": "humidity",
+      "definition": "The relative humidity as a number between 0 and 1 (inclusive)."
+    },
+    {
+      "term": "pressure",
+      "definition": "The sea-level air pressure in millibars."
+    },
+    {
+      "term": "windSpeed",
+      "definition": "The wind speed in mph (us/uk2), km/h (ca), or m/s (si)."
+    },
+    {
+      "term": "windGust",
+      "definition": "The wind gust speed — a short burst of wind speed significantly higher than the average wind speed — in the requested units."
+    },
+    {
+      "term": "windBearing",
+      "definition": "The direction that the wind is coming from in degrees, with true north at 0° and progressing clockwise. 90° = east, 180° = south, 270° = west."
+    },
+    {
+      "term": "cloudCover",
+      "definition": "The percentage of sky occluded by clouds, as a value between 0 and 1 (inclusive)."
+    },
+    {
+      "term": "uvIndex",
+      "definition": "The UV index — a measure of the ultraviolet radiation intensity from the sun that can cause skin damage."
+    },
+    {
+      "term": "visibility",
+      "definition": "The average visibility in miles (us/uk2) or kilometers (si/ca), capped at 10 miles/km."
+    },
+    {
+      "term": "ozone",
+      "definition": "The columnar density of total atmospheric ozone at the given time in Dobson units."
+    },
+    {
+      "term": "moonPhase",
+      "definition": "The fractional part of the lunation number during the given day. 0 = new moon, 0.25 = first quarter, 0.5 = full moon, 0.75 = last quarter. Only available on daily data points."
+    },
+    {
+      "term": "icon",
+      "definition": "A machine-readable text summary of the weather conditions suitable for selecting an icon for display. Values include: clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, partly-cloudy-night."
+    },
+    {
+      "term": "summary",
+      "definition": "A human-readable text summary of the weather conditions. This summary is designed to be displayed to the user as-is."
+    },
+    {
+      "term": "units",
+      "definition": "The unit system used for the response. Options: auto (select by location), us (imperial), si (metric), ca (SI but km/h for wind), uk2 (SI but miles for visibility and mph for wind)."
+    },
+    {
+      "term": "exclude",
+      "definition": "A comma-separated list of data blocks to omit from the response (currently, minutely, hourly, daily, alerts, flags). Excluding unneeded blocks reduces latency."
+    },
+    {
+      "term": "extend",
+      "definition": "When set to 'hourly', the API returns hourly data for 168 hours (7 days) instead of the default 48 hours."
+    },
+    {
+      "term": "lang",
+      "definition": "The language to use for human-readable text summaries. Supports over 50 languages using BCP 47 language codes."
+    },
+    {
+      "term": "advisory",
+      "definition": "A type of weather alert indicating that conditions may cause significant inconvenience and, if caution is not exercised, could lead to situations that may threaten life or property."
+    },
+    {
+      "term": "watch",
+      "definition": "A type of weather alert indicating that conditions are favorable for the occurrence of a hazardous weather event, but the occurrence, location, or timing is still uncertain."
+    },
+    {
+      "term": "warning",
+      "definition": "A type of weather alert indicating that a hazardous weather or hydrologic event is occurring, is imminent, or has a very high probability of occurring."
+    },
+    {
+      "term": "nearestStormDistance",
+      "definition": "The approximate distance to the nearest storm in the requested units. A storm distance of 0 doesn't necessarily mean it's raining; it could be drizzling nearby."
+    },
+    {
+      "term": "nearestStormBearing",
+      "definition": "The approximate direction of the nearest storm in degrees, with true north at 0° and progressing clockwise. Only returned in the currently data point."
+    }
+  ]
+}

@@ -1,0 +1,326 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dark-sky/main/json-schema/dark-sky-forecast-response.json",
+  "title": "Dark Sky Forecast Response",
+  "description": "JSON Schema for the top-level response object returned by the Dark Sky Forecast API and Time Machine endpoint.",
+  "type": "object",
+  "required": ["latitude", "longitude", "timezone"],
+  "properties": {
+    "latitude": {
+      "type": "number",
+      "description": "Latitude of the request location in decimal degrees."
+    },
+    "longitude": {
+      "type": "number",
+      "description": "Longitude of the request location in decimal degrees."
+    },
+    "timezone": {
+      "type": "string",
+      "description": "IANA timezone name for the requested location (e.g. 'America/New_York')."
+    },
+    "offset": {
+      "type": "number",
+      "description": "Current timezone offset in hours from UTC."
+    },
+    "currently": {
+      "$ref": "#/$defs/DataPoint"
+    },
+    "minutely": {
+      "$ref": "#/$defs/DataBlock"
+    },
+    "hourly": {
+      "$ref": "#/$defs/DataBlock"
+    },
+    "daily": {
+      "$ref": "#/$defs/DataBlock"
+    },
+    "alerts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Alert"
+      },
+      "description": "Array of severe weather alerts for the requested location."
+    },
+    "flags": {
+      "$ref": "#/$defs/Flags"
+    }
+  },
+  "$defs": {
+    "Icon": {
+      "type": "string",
+      "enum": [
+        "clear-day",
+        "clear-night",
+        "rain",
+        "snow",
+        "sleet",
+        "wind",
+        "fog",
+        "cloudy",
+        "partly-cloudy-day",
+        "partly-cloudy-night"
+      ],
+      "description": "Machine-readable icon name representing the weather conditions."
+    },
+    "DataBlock": {
+      "type": "object",
+      "description": "A collection of DataPoint objects over a period of time (minutes, hours, or days).",
+      "properties": {
+        "summary": {
+          "type": "string",
+          "description": "Human-readable text summary of the data block."
+        },
+        "icon": {
+          "$ref": "#/$defs/Icon"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DataPoint"
+          }
+        }
+      }
+    },
+    "DataPoint": {
+      "type": "object",
+      "description": "A data point object containing weather observation properties for a point in time.",
+      "properties": {
+        "time": {
+          "type": "integer",
+          "description": "Unix timestamp (seconds since epoch) of the data point."
+        },
+        "summary": {
+          "type": "string",
+          "description": "Human-readable text summary."
+        },
+        "icon": {
+          "$ref": "#/$defs/Icon"
+        },
+        "sunriseTime": {
+          "type": "integer",
+          "description": "Sunrise time as Unix timestamp (daily data points only)."
+        },
+        "sunsetTime": {
+          "type": "integer",
+          "description": "Sunset time as Unix timestamp (daily data points only)."
+        },
+        "moonPhase": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Fractional lunation number: 0=new moon, 0.25=first quarter, 0.5=full, 0.75=last quarter."
+        },
+        "nearestStormBearing": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 360,
+          "description": "Direction to nearest storm in degrees clockwise from north (currently only)."
+        },
+        "nearestStormDistance": {
+          "type": "number",
+          "description": "Distance to nearest storm in requested units (currently only)."
+        },
+        "precipIntensity": {
+          "type": "number",
+          "description": "Precipitation intensity in inches/hour (us/uk2/ca) or mm/hour (si)."
+        },
+        "precipIntensityMax": {
+          "type": "number",
+          "description": "Maximum precipitation intensity during the period (daily only)."
+        },
+        "precipIntensityMaxTime": {
+          "type": "integer",
+          "description": "Unix timestamp of maximum precipitation intensity (daily only)."
+        },
+        "precipProbability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Probability of precipitation between 0 and 1."
+        },
+        "precipAccumulation": {
+          "type": "number",
+          "description": "Accumulated snowfall in inches (or cm for si) during the period."
+        },
+        "precipType": {
+          "type": "string",
+          "enum": ["rain", "snow", "sleet"],
+          "description": "Type of precipitation. Only present when precipIntensity > 0."
+        },
+        "temperature": {
+          "type": "number",
+          "description": "Air temperature. Fahrenheit for us units; Celsius for si/ca/uk2."
+        },
+        "apparentTemperature": {
+          "type": "number",
+          "description": "Apparent ('feels like') temperature in the requested units."
+        },
+        "temperatureHigh": {
+          "type": "number",
+          "description": "Daytime high temperature (daily only)."
+        },
+        "temperatureHighTime": {
+          "type": "integer",
+          "description": "Unix timestamp of daytime high temperature (daily only)."
+        },
+        "temperatureLow": {
+          "type": "number",
+          "description": "Overnight low temperature (daily only)."
+        },
+        "temperatureLowTime": {
+          "type": "integer",
+          "description": "Unix timestamp of overnight low temperature (daily only)."
+        },
+        "temperatureMin": {
+          "type": "number",
+          "description": "Daily minimum temperature (daily only)."
+        },
+        "temperatureMinTime": {
+          "type": "integer",
+          "description": "Unix timestamp of daily minimum temperature (daily only)."
+        },
+        "temperatureMax": {
+          "type": "number",
+          "description": "Daily maximum temperature (daily only)."
+        },
+        "temperatureMaxTime": {
+          "type": "integer",
+          "description": "Unix timestamp of daily maximum temperature (daily only)."
+        },
+        "apparentTemperatureHigh": {
+          "type": "number",
+          "description": "Daytime high apparent temperature (daily only)."
+        },
+        "apparentTemperatureHighTime": {
+          "type": "integer",
+          "description": "Unix timestamp of daytime high apparent temperature (daily only)."
+        },
+        "apparentTemperatureLow": {
+          "type": "number",
+          "description": "Overnight low apparent temperature (daily only)."
+        },
+        "apparentTemperatureLowTime": {
+          "type": "integer",
+          "description": "Unix timestamp of overnight low apparent temperature (daily only)."
+        },
+        "dewPoint": {
+          "type": "number",
+          "description": "Dew point temperature in the requested units."
+        },
+        "humidity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Relative humidity between 0 and 1."
+        },
+        "pressure": {
+          "type": "number",
+          "description": "Sea-level air pressure in millibars."
+        },
+        "windSpeed": {
+          "type": "number",
+          "description": "Wind speed in the requested units."
+        },
+        "windGust": {
+          "type": "number",
+          "description": "Wind gust speed in the requested units."
+        },
+        "windGustTime": {
+          "type": "integer",
+          "description": "Unix timestamp of maximum wind gust (daily only)."
+        },
+        "windBearing": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 360,
+          "description": "Wind direction in degrees clockwise from north."
+        },
+        "cloudCover": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Fraction of sky covered by clouds, between 0 and 1."
+        },
+        "uvIndex": {
+          "type": "integer",
+          "description": "UV index."
+        },
+        "uvIndexTime": {
+          "type": "integer",
+          "description": "Unix timestamp of maximum UV index (daily only)."
+        },
+        "visibility": {
+          "type": "number",
+          "maximum": 10,
+          "description": "Average visibility in miles (us/uk2) or kilometers (si/ca), capped at 10."
+        },
+        "ozone": {
+          "type": "number",
+          "description": "Columnar density of total atmospheric ozone in Dobson units."
+        }
+      }
+    },
+    "Alert": {
+      "type": "object",
+      "required": ["title", "time", "expires", "description", "uri"],
+      "description": "Severe weather alert issued by a governmental weather authority.",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Short text summary of the alert."
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Names of regions covered by the alert."
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["advisory", "watch", "warning"],
+          "description": "Severity of the alert."
+        },
+        "time": {
+          "type": "integer",
+          "description": "Unix timestamp of the alert's onset."
+        },
+        "expires": {
+          "type": "integer",
+          "description": "Unix timestamp when the alert expires."
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed text description of the alert."
+        },
+        "uri": {
+          "type": "string",
+          "format": "uri",
+          "description": "HTTP URI linking to the full text of the alert."
+        }
+      }
+    },
+    "Flags": {
+      "type": "object",
+      "description": "Metadata about the request including data sources used.",
+      "properties": {
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Machine-readable identifiers of weather data sources used."
+        },
+        "nearest-station": {
+          "type": "number",
+          "description": "Distance to nearest weather station in requested units."
+        },
+        "units": {
+          "type": "string",
+          "enum": ["auto", "ca", "si", "uk2", "us"],
+          "description": "Units used in the response."
+        }
+      }
+    }
+  }
+}

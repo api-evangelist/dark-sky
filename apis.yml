@@ -42,7 +42,17 @@ apis:
       - type: Documentation
         url: https://darksky.net/dev/docs
       - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/dark-sky/refs/heads/main/openapi.yml
+        url: https://raw.githubusercontent.com/api-evangelist/dark-sky/refs/heads/main/openapi/openapi.yml
+      - type: JSONSchema
+        url: https://raw.githubusercontent.com/api-evangelist/dark-sky/refs/heads/main/json-schema/dark-sky-forecast-response.json
+      - type: Example
+        url: https://raw.githubusercontent.com/api-evangelist/dark-sky/refs/heads/main/examples/forecast-response.json
+      - type: Example
+        url: https://raw.githubusercontent.com/api-evangelist/dark-sky/refs/heads/main/examples/time-machine-response.json
+      - type: Vocabulary
+        url: https://raw.githubusercontent.com/api-evangelist/dark-sky/refs/heads/main/vocabulary/dark-sky-vocabulary.json
+      - type: JSONLDContext
+        url: https://raw.githubusercontent.com/api-evangelist/dark-sky/refs/heads/main/json-ld/dark-sky-context.jsonld
     contact:
       - FN: Dark Sky (Apple)
         url: https://darksky.net/dev
