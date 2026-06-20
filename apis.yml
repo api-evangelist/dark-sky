@@ -10,7 +10,7 @@ description: >
   daily summaries. It was acquired by Apple in March 2020; new developer
   signups closed immediately, and the API was permanently shut down on
   March 31, 2023. Apple's WeatherKit REST API is the successor service.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/dark-sky/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -30,7 +30,7 @@ apis:
       latitude/longitude, including current observations, minute-by-minute
       precipitation for the next hour, hourly data for the next 48 hours,
       and daily summaries for the next 7 days.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://darksky.net/dev/docs
     baseURL: https://api.darksky.net
     tags:
