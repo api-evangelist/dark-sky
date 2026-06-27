@@ -45,9 +45,9 @@ apis:
         url: https://raw.githubusercontent.com/api-evangelist/dark-sky/refs/heads/main/openapi/openapi.yml
       - type: JSONSchema
         url: https://raw.githubusercontent.com/api-evangelist/dark-sky/refs/heads/main/json-schema/dark-sky-forecast-response.json
-      - type: Example
+      - type: Examples
         url: https://raw.githubusercontent.com/api-evangelist/dark-sky/refs/heads/main/examples/forecast-response.json
-      - type: Example
+      - type: Examples
         url: https://raw.githubusercontent.com/api-evangelist/dark-sky/refs/heads/main/examples/time-machine-response.json
       - type: Vocabulary
         url: https://raw.githubusercontent.com/api-evangelist/dark-sky/refs/heads/main/vocabulary/dark-sky-vocabulary.json
