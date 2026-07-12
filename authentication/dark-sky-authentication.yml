@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - path
+schemes:
+- name: ApiKeyPath
+  type: apiKey
+  in: path
+  parameter: key
+  description: Dark Sky API key included as the first path segment after /forecast/. Obtain
+    your key from https://darksky.net/dev.
+  sources:
+  - openapi/openapi.yml
