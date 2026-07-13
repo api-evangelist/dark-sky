@@ -2,11 +2,10 @@
   "repo": "dark-sky",
   "feeds": [
     {
-      "source": "https://blog.darksky.net",
-      "saved": 0,
-      "error": "DNS ENOTFOUND - domain does not resolve"
+      "source": "https://www.linkedin.com/company/dark-sky",
+      "error": "HTTPError"
     }
   ],
-  "fetched": "2026-06-27T12:35:01Z",
+  "fetched": "2026-07-11T11:50:51Z",
   "post_count": 0
 }
