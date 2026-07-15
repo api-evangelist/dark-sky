@@ -58,6 +58,8 @@ apis:
         url: https://darksky.net/dev
         email: ''
 common:
+  - type: AgenticAccess
+    url: agentic-access/dark-sky-agentic-access.yml
   - type: DomainSecurity
     url: security/dark-sky-domain-security.yml
   - type: Authentication
