@@ -1,0 +1,16 @@
+{
+  "provider": "dark-sky",
+  "sources": [
+    "dark-sky-forecast-api-openapi.yml",
+    "dark-sky-time-machine-api-openapi.yml"
+  ],
+  "outputs": [
+    "dark-sky-forecast-api-openapi.yml",
+    "dark-sky-time-machine-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
