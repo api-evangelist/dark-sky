@@ -1,0 +1,361 @@
+{
+  "item": [
+    {
+      "id": "cefd20d7-7d59-4e44-bdb2-6bf382f12913",
+      "name": "Forecast",
+      "description": {
+        "content": "Current and forecast weather data for a given location",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5239f9f7-973a-44e5-a33a-614c1c605135",
+          "name": "Current and forecast weather data",
+          "request": {
+            "name": "Current and forecast weather data",
+            "description": {
+              "content": "Returns the current weather conditions and forecast for the given latitude and longitude. The response always contains a currently data point, and may contain minutely, hourly, daily, alerts, and flags data blocks depending on the exclude parameter and data availability.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "forecast",
+                ":key",
+                "{{latitude}},{{longitude}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "exclude",
+                  "value": "<string>",
+                  "description": "Comma-separated list of data blocks to exclude from the response. Excluding unneeded blocks reduces latency and conserves bandwidth.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "extend",
+                  "value": "<string>",
+                  "description": "When set to \"hourly\", returns hourly data for the next 168 hours (7 days) rather than the default 48 hours.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "lang",
+                  "value": "en",
+                  "description": "Returns text summaries in the given language. Defaults to \"en\" (English).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "units",
+                  "value": "auto",
+                  "description": "Returns weather conditions in the requested units. Defaults to \"auto\". - auto: Automatically selects units based on geographic location. - ca: SI units, but with km/h for wind speed. - si: SI units (m/s for wind speed, Celsius for temperature). - uk2: SI units, but with miles for visibility and mph for wind speed. - us: Imperial units (the default for the United States).\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "key",
+                  "description": "(Required) Your Dark Sky API secret key."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b4db8304-1f22-4889-bbb3-a5db4b7398f3",
+              "name": "Successful forecast response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecast",
+                    ":key",
+                    "{{latitude}},{{longitude}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exclude",
+                      "value": "minutely"
+                    },
+                    {
+                      "key": "extend",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "units",
+                      "value": "auto"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) Your Dark Sky API secret key."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of API calls made by this account today",
+                  "key": "X-Forecast-API-Calls",
+                  "value": "4187"
+                },
+                {
+                  "disabled": false,
+                  "description": "Server-side response time in milliseconds",
+                  "key": "X-Response-Time",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"latitude\": 37.8267,\n  \"longitude\": -122.4233,\n  \"timezone\": \"America/Los_Angeles\",\n  \"offset\": -8,\n  \"currently\": {\n    \"time\": 1609459200,\n    \"summary\": \"Partly Cloudy\",\n    \"icon\": \"partly-cloudy-day\",\n    \"temperature\": 55.6,\n    \"apparentTemperature\": 53.1,\n    \"humidity\": 0.78,\n    \"windSpeed\": 9.3,\n    \"windBearing\": 245,\n    \"precipProbability\": 0.12,\n    \"precipIntensity\": 0.0045\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c26914a-256e-4b68-9c1c-79a1b3d1679e",
+              "name": "Bad request — invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecast",
+                    ":key",
+                    "{{latitude}},{{longitude}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exclude",
+                      "value": "minutely"
+                    },
+                    {
+                      "key": "extend",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "units",
+                      "value": "auto"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) Your Dark Sky API secret key."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8693,\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ca162f5-5190-42e8-897f-307d6801d001",
+              "name": "Forbidden — invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecast",
+                    ":key",
+                    "{{latitude}},{{longitude}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exclude",
+                      "value": "minutely"
+                    },
+                    {
+                      "key": "extend",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "units",
+                      "value": "auto"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) Your Dark Sky API secret key."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8693,\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.darksky.net",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Latitude of the location, in decimal degrees (positive is north).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<double>",
+      "key": "latitude"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Longitude of the location, in decimal degrees (positive is east).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<double>",
+      "key": "longitude"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "732b959f-df33-4fa0-b45b-c3ecd71cb184",
+    "name": "Dark Sky Forecast API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Dark Sky Forecast API (now shut down; replaced by Apple WeatherKit) provided hyperlocal weather data for any latitude/longitude worldwide, including current conditions, minute-by-minute precipitation for the next 60 minutes, hour-by-hour forecasts for the next 48 hours, and day-by-day summaries for the next 7 days. It also supported Time Machine requests to retrieve observed or forecast weather for arbitrary points in the past or future.\nNew developer sign-ups closed in March 2020 when Apple acquired Dark Sky. The API was permanently shut down on March 31, 2023.\n\n\nContact Support:\n Name: Dark Sky (Apple)",
+      "type": "text/plain"
+    }
+  }
+}

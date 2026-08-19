@@ -1,0 +1,341 @@
+{
+  "item": [
+    {
+      "id": "b718f9e2-cf3b-4a3e-b1ee-80bf0a7f508a",
+      "name": "Time Machine",
+      "description": {
+        "content": "Historical or future weather data for a specific point in time",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8a35eef4-74a4-4486-b494-dd466b8259e1",
+          "name": "Time Machine — historical or future weather data",
+          "request": {
+            "name": "Time Machine — historical or future weather data",
+            "description": {
+              "content": "Returns the observed (or forecast) weather conditions for a specific point in time. The time parameter may be a Unix timestamp (seconds since epoch) or an ISO 8601 datetime string. Historical requests return data based on station observations; future requests return forecast data.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "forecast",
+                ":key",
+                "{{latitude}},{{longitude}},{{time}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "exclude",
+                  "value": "<string>",
+                  "description": "Comma-separated list of data blocks to exclude from the response. Excluding unneeded blocks reduces latency and conserves bandwidth.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "lang",
+                  "value": "en",
+                  "description": "Returns text summaries in the given language. Defaults to \"en\" (English).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "units",
+                  "value": "auto",
+                  "description": "Returns weather conditions in the requested units. Defaults to \"auto\". - auto: Automatically selects units based on geographic location. - ca: SI units, but with km/h for wind speed. - si: SI units (m/s for wind speed, Celsius for temperature). - uk2: SI units, but with miles for visibility and mph for wind speed. - us: Imperial units (the default for the United States).\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "key",
+                  "description": "(Required) Your Dark Sky API secret key."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "803946b9-cd25-46d3-bb4d-6fa17060c6ae",
+              "name": "Successful time machine response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecast",
+                    ":key",
+                    "{{latitude}},{{longitude}},{{time}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exclude",
+                      "value": "minutely"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "units",
+                      "value": "auto"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) Your Dark Sky API secret key."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"latitude\": 7754.4461121950135,\n  \"longitude\": 3300.726067797086,\n  \"timezone\": \"string\",\n  \"offset\": 4082.2245635598497,\n  \"currently\": {\n    \"time\": 9769,\n    \"summary\": \"string\",\n    \"icon\": \"cloudy\",\n    \"sunriseTime\": 6589,\n    \"sunsetTime\": 7695,\n    \"moonPhase\": 0.09908911603612891,\n    \"nearestStormBearing\": 8357,\n    \"nearestStormDistance\": 8477.227813622078,\n    \"precipIntensity\": 9390.541858230928,\n    \"precipIntensityMax\": 4651.41359141486,\n    \"precipIntensityMaxTime\": 9110,\n    \"precipProbability\": 0.5111067110146859,\n    \"precipAccumulation\": 5365.393291940889,\n    \"precipType\": \"rain\",\n    \"temperature\": 6668.443897518301,\n    \"apparentTemperature\": 8772.601712817535,\n    \"temperatureHigh\": 3681.0457247132576,\n    \"temperatureHighTime\": 7039,\n    \"temperatureLow\": 6914.873587809452,\n    \"temperatureLowTime\": 447,\n    \"temperatureMin\": 744.8366306710552,\n    \"temperatureMinTime\": 1770,\n    \"temperatureMax\": 9197.397522976094,\n    \"temperatureMaxTime\": 4171,\n    \"apparentTemperatureHigh\": 1155.0805020051314,\n    \"apparentTemperatureHighTime\": 2189,\n    \"apparentTemperatureLow\": 5727.393851477705,\n    \"apparentTemperatureLowTime\": 2923,\n    \"dewPoint\": 3798.9864812572227,\n    \"humidity\": 0.8193360196430969,\n    \"pressure\": 3787.7186099958635,\n    \"windSpeed\": 4805.897696472652,\n    \"windGust\": 5683.6760111219555,\n    \"windGustTime\": 4573,\n    \"windBearing\": 175,\n    \"cloudCover\": 0.9565699957008778,\n    \"uvIndex\": 5639,\n    \"uvIndexTime\": 9176,\n    \"visibility\": 2.47871766830165,\n    \"ozone\": 5914.052202916311\n  },\n  \"minutely\": {\n    \"summary\": \"string\",\n    \"icon\": \"clear-night\",\n    \"data\": [\n      {\n        \"time\": 1574,\n        \"summary\": \"string\",\n        \"icon\": \"partly-cloudy-night\",\n        \"sunriseTime\": 4659,\n        \"sunsetTime\": 3086,\n        \"moonPhase\": 0.8577307764958014,\n        \"nearestStormBearing\": 9081,\n        \"nearestStormDistance\": 7840.261874106262,\n        \"precipIntensity\": 8592.458540635784,\n        \"precipIntensityMax\": 1600.2424663317372,\n        \"precipIntensityMaxTime\": 3499,\n        \"precipProbability\": 0.2463159186142474,\n        \"precipAccumulation\": 9224.002343032325,\n        \"precipType\": \"sleet\",\n        \"temperature\": 5645.493915351103,\n        \"apparentTemperature\": 1245.851764446232,\n        \"temperatureHigh\": 1825.4879762188325,\n        \"temperatureHighTime\": 8541,\n        \"temperatureLow\": 8039.220386332368,\n        \"temperatureLowTime\": 3726,\n        \"temperatureMin\": 2943.8923849013863,\n        \"temperatureMinTime\": 8610,\n        \"temperatureMax\": 9305.435890879133,\n        \"temperatureMaxTime\": 1175,\n        \"apparentTemperatureHigh\": 7730.291457149602,\n        \"apparentTemperatureHighTime\": 1917,\n        \"apparentTemperatureLow\": 2504.925073211751,\n        \"apparentTemperatureLowTime\": 9720,\n        \"dewPoint\": 1335.2973080320762,\n        \"humidity\": 0.37009606702764886,\n        \"pressure\": 7693.335459918557,\n        \"windSpeed\": 3912.152316715637,\n        \"windGust\": 2563.6104143912917,\n        \"windGustTime\": 3710,\n        \"windBearing\": 80,\n        \"cloudCover\": 0.5317033936470664,\n        \"uvIndex\": 8554,\n        \"uvIndexTime\": 6591,\n        \"visibility\": 4.634385295553715,\n        \"ozone\": 1483.8414981432402\n      },\n      {\n        \"time\": 1423,\n        \"summary\": \"string\",\n        \"icon\": \"snow\",\n        \"sunriseTime\": 2527,\n        \"sunsetTime\": 4123,\n        \"moonPhase\": 0.712909679471566,\n        \"nearestStormBearing\": 5813,\n        \"nearestStormDistance\": 3273.5385509254143,\n        \"precipIntensity\": 4465.147659273284,\n        \"precipIntensityMax\": 234.68721762550993,\n        \"precipIntensityMaxTime\": 6156,\n        \"precipProbability\": 0.9644885952773173,\n        \"precipAccumulation\": 5505.867948338104,\n        \"precipType\": \"rain\",\n        \"temperature\": 7447.515799707283,\n        \"apparentTemperature\": 5180.7759658041105,\n        \"temperatureHigh\": 2880.423575407636,\n        \"temperatureHighTime\": 7138,\n        \"temperatureLow\": 7780.642412989663,\n        \"temperatureLowTime\": 8100,\n        \"temperatureMin\": 4918.623353305182,\n        \"temperatureMinTime\": 7977,\n        \"temperatureMax\": 3680.65537758391,\n        \"temperatureMaxTime\": 7358,\n        \"apparentTemperatureHigh\": 3604.965954667043,\n        \"apparentTemperatureHighTime\": 6893,\n        \"apparentTemperatureLow\": 8954.36012759583,\n        \"apparentTemperatureLowTime\": 7086,\n        \"dewPoint\": 8031.098315526369,\n        \"humidity\": 0.5279704145373332,\n        \"pressure\": 2995.8675333236797,\n        \"windSpeed\": 7569.078110486437,\n        \"windGust\": 3627.2252012864005,\n        \"windGustTime\": 318,\n        \"windBearing\": 118,\n        \"cloudCover\": 0.26689767886908977,\n        \"uvIndex\": 3050,\n        \"uvIndexTime\": 3086,\n        \"visibility\": 2.8592040169757826,\n        \"ozone\": 2514.156742503114\n      }\n    ]\n  },\n  \"hourly\": {\n    \"summary\": \"string\",\n    \"icon\": \"rain\",\n    \"data\": [\n      {\n        \"time\": 6138,\n        \"summary\": \"string\",\n        \"icon\": \"rain\",\n        \"sunriseTime\": 7477,\n        \"sunsetTime\": 6168,\n        \"moonPhase\": 0.21687435888189777,\n        \"nearestStormBearing\": 3190,\n        \"nearestStormDistance\": 6886.022303409433,\n        \"precipIntensity\": 3182.3214696666637,\n        \"precipIntensityMax\": 7829.906023091925,\n        \"precipIntensityMaxTime\": 7204,\n        \"precipProbability\": 0.3341737908737712,\n        \"precipAccumulation\": 8280.529836079138,\n        \"precipType\": \"sleet\",\n        \"temperature\": 8492.019508870568,\n        \"apparentTemperature\": 4293.128727691261,\n        \"temperatureHigh\": 9156.680246301601,\n        \"temperatureHighTime\": 9622,\n        \"temperatureLow\": 5316.016852032004,\n        \"temperatureLowTime\": 2772,\n        \"temperatureMin\": 4801.988895749612,\n        \"temperatureMinTime\": 4020,\n        \"temperatureMax\": 4625.157968226042,\n        \"temperatureMaxTime\": 5882,\n        \"apparentTemperatureHigh\": 126.5088564832284,\n        \"apparentTemperatureHighTime\": 7057,\n        \"apparentTemperatureLow\": 9985.893673525215,\n        \"apparentTemperatureLowTime\": 8559,\n        \"dewPoint\": 5770.144523281866,\n        \"humidity\": 0.042971878820300735,\n        \"pressure\": 8072.061248753437,\n        \"windSpeed\": 7426.005829944812,\n        \"windGust\": 7361.018815672845,\n        \"windGustTime\": 3382,\n        \"windBearing\": 271,\n        \"cloudCover\": 0.6346335013456622,\n        \"uvIndex\": 4914,\n        \"uvIndexTime\": 5127,\n        \"visibility\": 3.5283762043626457,\n        \"ozone\": 733.9762846193076\n      },\n      {\n        \"time\": 7145,\n        \"summary\": \"string\",\n        \"icon\": \"wind\",\n        \"sunriseTime\": 4951,\n        \"sunsetTime\": 7551,\n        \"moonPhase\": 0.22366900040806426,\n        \"nearestStormBearing\": 1488,\n        \"nearestStormDistance\": 9654.137356602852,\n        \"precipIntensity\": 7743.165905302862,\n        \"precipIntensityMax\": 6563.596634789328,\n        \"precipIntensityMaxTime\": 6765,\n        \"precipProbability\": 0.5757624256243302,\n        \"precipAccumulation\": 1904.944066278901,\n        \"precipType\": \"snow\",\n        \"temperature\": 3131.254666886909,\n        \"apparentTemperature\": 499.561635605511,\n        \"temperatureHigh\": 8295.041042575576,\n        \"temperatureHighTime\": 654,\n        \"temperatureLow\": 2722.582105956266,\n        \"temperatureLowTime\": 7883,\n        \"temperatureMin\": 9022.624421386763,\n        \"temperatureMinTime\": 1176,\n        \"temperatureMax\": 3901.6727804683183,\n        \"temperatureMaxTime\": 4281,\n        \"apparentTemperatureHigh\": 1842.854058399015,\n        \"apparentTemperatureHighTime\": 3623,\n        \"apparentTemperatureLow\": 8473.449118772163,\n        \"apparentTemperatureLowTime\": 2883,\n        \"dewPoint\": 4744.193944480245,\n        \"humidity\": 0.8610385110870775,\n        \"pressure\": 4113.365864410778,\n        \"windSpeed\": 1754.2393140945046,\n        \"windGust\": 9512.582045551682,\n        \"windGustTime\": 4133,\n        \"windBearing\": 259,\n        \"cloudCover\": 0.6670723519300412,\n        \"uvIndex\": 9290,\n        \"uvIndexTime\": 3978,\n        \"visibility\": 9.097548265286717,\n        \"ozone\": 9023.735928764778\n      }\n    ]\n  },\n  \"daily\": {\n    \"summary\": \"string\",\n    \"icon\": \"clear-day\",\n    \"data\": [\n      {\n        \"time\": 6751,\n        \"summary\": \"string\",\n        \"icon\": \"snow\",\n        \"sunriseTime\": 707,\n        \"sunsetTime\": 253,\n        \"moonPhase\": 0.7061979506628163,\n        \"nearestStormBearing\": 8737,\n        \"nearestStormDistance\": 4624.510456116882,\n        \"precipIntensity\": 1831.8277406819661,\n        \"precipIntensityMax\": 9193.483092286717,\n        \"precipIntensityMaxTime\": 8311,\n        \"precipProbability\": 0.30637066715420547,\n        \"precipAccumulation\": 2251.366714768456,\n        \"precipType\": \"sleet\",\n        \"temperature\": 8731.714360107635,\n        \"apparentTemperature\": 8057.305371156505,\n        \"temperatureHigh\": 4559.390423127952,\n        \"temperatureHighTime\": 3341,\n        \"temperatureLow\": 4635.371694534599,\n        \"temperatureLowTime\": 4602,\n        \"temperatureMin\": 410.05020006933404,\n        \"temperatureMinTime\": 300,\n        \"temperatureMax\": 3128.927504335912,\n        \"temperatureMaxTime\": 2682,\n        \"apparentTemperatureHigh\": 9983.259305125614,\n        \"apparentTemperatureHighTime\": 8456,\n        \"apparentTemperatureLow\": 5488.149519964407,\n        \"apparentTemperatureLowTime\": 816,\n        \"dewPoint\": 8456.999507978446,\n        \"humidity\": 0.8912290956203949,\n        \"pressure\": 8194.688312728162,\n        \"windSpeed\": 4120.38428317897,\n        \"windGust\": 323.86242027625855,\n        \"windGustTime\": 3895,\n        \"windBearing\": 62,\n        \"cloudCover\": 0.7952145716082872,\n        \"uvIndex\": 9346,\n        \"uvIndexTime\": 838,\n        \"visibility\": 7.730220875233341,\n        \"ozone\": 9715.779952664217\n      },\n      {\n        \"time\": 8700,\n        \"summary\": \"string\",\n        \"icon\": \"cloudy\",\n        \"sunriseTime\": 166,\n        \"sunsetTime\": 2514,\n        \"moonPhase\": 0.013927239523090384,\n        \"nearestStormBearing\": 4957,\n        \"nearestStormDistance\": 3620.073047936627,\n        \"precipIntensity\": 222.75579658988298,\n        \"precipIntensityMax\": 5295.170054433898,\n        \"precipIntensityMaxTime\": 8706,\n        \"precipProbability\": 0.15950746683353811,\n        \"precipAccumulation\": 8023.731847289504,\n        \"precipType\": \"sleet\",\n        \"temperature\": 2424.3811965100904,\n        \"apparentTemperature\": 9531.887400307847,\n        \"temperatureHigh\": 5553.969460600887,\n        \"temperatureHighTime\": 2197,\n        \"temperatureLow\": 9281.62437218306,\n        \"temperatureLowTime\": 4339,\n        \"temperatureMin\": 3435.2800293903897,\n        \"temperatureMinTime\": 7536,\n        \"temperatureMax\": 9730.7207389906,\n        \"temperatureMaxTime\": 822,\n        \"apparentTemperatureHigh\": 3033.8988022204862,\n        \"apparentTemperatureHighTime\": 2468,\n        \"apparentTemperatureLow\": 8148.410536932322,\n        \"apparentTemperatureLowTime\": 9498,\n        \"dewPoint\": 7736.428900759695,\n        \"humidity\": 0.7540170731651458,\n        \"pressure\": 5963.872239281539,\n        \"windSpeed\": 9681.811229659479,\n        \"windGust\": 7561.39938917872,\n        \"windGustTime\": 9276,\n        \"windBearing\": 213,\n        \"cloudCover\": 0.08935164963096265,\n        \"uvIndex\": 8019,\n        \"uvIndexTime\": 3946,\n        \"visibility\": 1.962845182796873,\n        \"ozone\": 7985.515233782105\n      }\n    ]\n  },\n  \"alerts\": [\n    {\n      \"title\": \"string\",\n      \"time\": 4563,\n      \"expires\": 1436,\n      \"description\": \"string\",\n      \"uri\": \"http://zeSwsPRqxXESsVrkHTwJzTfUnfdm.gtFrX2,EbhmB9UMibSlenwmI2Luu8\",\n      \"regions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"severity\": \"warning\"\n    },\n    {\n      \"title\": \"string\",\n      \"time\": 7565,\n      \"expires\": 3441,\n      \"description\": \"string\",\n      \"uri\": \"https://iQtNGfpryMyAksyfmll.ivawgexifzdCkE\",\n      \"regions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"severity\": \"watch\"\n    }\n  ],\n  \"flags\": {\n    \"sources\": [\n      \"string\",\n      \"string\"\n    ],\n    \"nearest-station\": 7300.954673198478,\n    \"units\": \"si\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b8522f6-4681-4f02-858e-a221757590c6",
+              "name": "Bad request — invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecast",
+                    ":key",
+                    "{{latitude}},{{longitude}},{{time}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exclude",
+                      "value": "minutely"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "units",
+                      "value": "auto"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) Your Dark Sky API secret key."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9684,\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbe70f55-2734-4cb5-a95b-0b9edd5d87ab",
+              "name": "Forbidden — invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecast",
+                    ":key",
+                    "{{latitude}},{{longitude}},{{time}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exclude",
+                      "value": "minutely"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "units",
+                      "value": "auto"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) Your Dark Sky API secret key."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9684,\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.darksky.net",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Latitude of the location, in decimal degrees (positive is north).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<double>",
+      "key": "latitude"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Longitude of the location, in decimal degrees (positive is east).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<double>",
+      "key": "longitude"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Either a Unix timestamp (integer seconds since the Unix epoch) or an ISO 8601 datetime string such as [YYYY]-[MM]-[DD]T[HH]:[MM]:[SS][timezone]. The timezone is optional; if not provided, local time for the specified location is assumed.\n",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "time"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0aab119b-7a37-4285-b40b-a6e1b95862ba",
+    "name": "Dark Sky Forecast Time Machine API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Dark Sky Forecast API (now shut down; replaced by Apple WeatherKit) provided hyperlocal weather data for any latitude/longitude worldwide, including current conditions, minute-by-minute precipitation for the next 60 minutes, hour-by-hour forecasts for the next 48 hours, and day-by-day summaries for the next 7 days. It also supported Time Machine requests to retrieve observed or forecast weather for arbitrary points in the past or future.\nNew developer sign-ups closed in March 2020 when Apple acquired Dark Sky. The API was permanently shut down on March 31, 2023.\n\n\nContact Support:\n Name: Dark Sky (Apple)",
+      "type": "text/plain"
+    }
+  }
+}

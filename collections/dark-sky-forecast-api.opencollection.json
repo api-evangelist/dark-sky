@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dark Sky Forecast API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Forecast",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Current and forecast weather data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.darksky.net/forecast/:key/:latitude,:longitude",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "Your Dark Sky API secret key."
+              },
+              {
+                "name": "latitude",
+                "value": "",
+                "type": "path",
+                "description": "Latitude of the location, in decimal degrees (positive is north)."
+              },
+              {
+                "name": "longitude",
+                "value": "",
+                "type": "path",
+                "description": "Longitude of the location, in decimal degrees (positive is east)."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of data blocks to exclude from the response. Excluding unneeded blocks reduces latency and conserves bandwidth.\n"
+              },
+              {
+                "name": "extend",
+                "value": "",
+                "type": "query",
+                "description": "When set to \"hourly\", returns hourly data for the next 168 hours (7 days) rather than the default 48 hours.\n"
+              },
+              {
+                "name": "lang",
+                "value": "",
+                "type": "query",
+                "description": "Returns text summaries in the given language. Defaults to \"en\" (English).\n"
+              },
+              {
+                "name": "units",
+                "value": "",
+                "type": "query",
+                "description": "Returns weather conditions in the requested units. Defaults to \"auto\". - auto: Automatically selects units based on geographic location. - ca: SI units, but with km/h for wind speed. - si: SI units (m/s for wind speed, Celsius for temperature). - uk2: SI units, but with miles for visibility and mph for wind speed. - us: Imperial units (the default for the United States).\n"
+              }
+            ]
+          },
+          "docs": "Returns the current weather conditions and forecast for the given latitude and longitude. The response always contains a currently data point, and may contain minutely, hourly, daily, alerts, and flags data blocks depending on the exclude parameter and data availability.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

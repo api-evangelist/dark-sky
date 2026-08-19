@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dark Sky Forecast Time Machine API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Time Machine",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Time Machine — historical or future weather data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.darksky.net/forecast/:key/:latitude,:longitude,:time",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "Your Dark Sky API secret key."
+              },
+              {
+                "name": "latitude",
+                "value": "",
+                "type": "path",
+                "description": "Latitude of the location, in decimal degrees (positive is north)."
+              },
+              {
+                "name": "longitude",
+                "value": "",
+                "type": "path",
+                "description": "Longitude of the location, in decimal degrees (positive is east)."
+              },
+              {
+                "name": "time",
+                "value": "",
+                "type": "path",
+                "description": "Either a Unix timestamp (integer seconds since the Unix epoch) or an ISO 8601 datetime string such as [YYYY]-[MM]-[DD]T[HH]:[MM]:[SS][timezone]. The timezone is optional; if not provided, local time for the specified location is assumed.\n"
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of data blocks to exclude from the response. Excluding unneeded blocks reduces latency and conserves bandwidth.\n"
+              },
+              {
+                "name": "lang",
+                "value": "",
+                "type": "query",
+                "description": "Returns text summaries in the given language. Defaults to \"en\" (English).\n"
+              },
+              {
+                "name": "units",
+                "value": "",
+                "type": "query",
+                "description": "Returns weather conditions in the requested units. Defaults to \"auto\". - auto: Automatically selects units based on geographic location. - ca: SI units, but with km/h for wind speed. - si: SI units (m/s for wind speed, Celsius for temperature). - uk2: SI units, but with miles for visibility and mph for wind speed. - us: Imperial units (the default for the United States).\n"
+              }
+            ]
+          },
+          "docs": "Returns the observed (or forecast) weather conditions for a specific point in time. The time parameter may be a Unix timestamp (seconds since epoch) or an ISO 8601 datetime string. Historical requests return data based on station observations; future requests return forecast data.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
