@@ -10,6 +10,18 @@ description: >
   daily summaries. It was acquired by Apple in March 2020; new developer
   signups closed immediately, and the API was permanently shut down on
   March 31, 2023. Apple's WeatherKit REST API is the successor service.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: self-serve
