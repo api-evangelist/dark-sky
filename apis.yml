@@ -29,11 +29,13 @@ accessModel:
   try_now: true
   public: false
   label: Free · Self-serve signup
-  confidence: high
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  - {url: 'https://darksky.net', status: 301, note: 'declared website redirects to https://support.apple.com/en-us/102594 — a different registrable domain (darksky.net -> apple.com), possible rename or acquisition (probed 2026-09-03, roadmap#169)'}
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/dark-sky.png
 url: https://raw.githubusercontent.com/api-evangelist/dark-sky/refs/heads/main/apis.yml
