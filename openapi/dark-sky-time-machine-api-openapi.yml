@@ -1,11 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Dark Sky Forecast Time Machine API
-  description: 'The Dark Sky Forecast API (now shut down; replaced by Apple WeatherKit) provided hyperlocal weather data for any latitude/longitude worldwide, including current conditions, minute-by-minute precipitation for the next 60 minutes, hour-by-hour forecasts for the next 48 hours, and day-by-day summaries for the next 7 days. It also supported Time Machine requests to retrieve observed or forecast weather for arbitrary points in the past or future.
-
-    New developer sign-ups closed in March 2020 when Apple acquired Dark Sky. The API was permanently shut down on March 31, 2023.
-
-    '
+  description: The Dark Sky Forecast API (now shut down; replaced by Apple WeatherKit) provided hyperlocal weather data for any latitude/longitude worldwide, including current conditions, minute-by-minute precipitation for the next 60 minutes, hour-by-hour forecasts for the next 48 hours, and day-by-day summaries for the next 7 days.
   version: 1.0.0
   contact:
     name: Dark Sky (Apple)
@@ -25,9 +21,7 @@ paths:
     get:
       operationId: getTimeMachine
       summary: Time Machine — historical or future weather data
-      description: 'Returns the observed (or forecast) weather conditions for a specific point in time. The time parameter may be a Unix timestamp (seconds since epoch) or an ISO 8601 datetime string. Historical requests return data based on station observations; future requests return forecast data.
-
-        '
+      description: Returns the observed (or forecast) weather conditions for a specific point in time. The time parameter may be a Unix timestamp (seconds since epoch) or an ISO 8601 datetime string. Historical requests return data based on station observations; future requests return forecast data.
       tags:
       - Time Machine
       parameters:
@@ -66,6 +60,22 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    Icon:
+      type: string
+      enum:
+      - clear-day
+      - clear-night
+      - rain
+      - snow
+      - sleet
+      - wind
+      - fog
+      - cloudy
+      - partly-cloudy-day
+      - partly-cloudy-night
+      description: 'Machine-readable icon name representing the weather conditions. Suitable for selecting an icon to display.
+
+        '
     DataPoint:
       type: object
       description: 'A data point object contains various properties, each representing the average (or maximum, or minimum) of a particular weather phenomenon occurring during a period of time. All properties of a data point object are optional; it is possible, with some units, for a precipitation type property to be omitted.
@@ -226,6 +236,46 @@ components:
         ozone:
           type: number
           description: Columnar density of total atmospheric ozone in Dobson units.
+    Alert:
+      type: object
+      description: Severe weather alert issued by a governmental weather authority.
+      required:
+      - title
+      - time
+      - expires
+      - description
+      - uri
+      properties:
+        title:
+          type: string
+          description: Short text summary of the alert.
+        regions:
+          type: array
+          items:
+            type: string
+          description: Names of regions covered by the alert.
+        severity:
+          type: string
+          enum:
+          - advisory
+          - watch
+          - warning
+          description: Severity of the alert.
+        time:
+          type: integer
+          format: int64
+          description: Unix timestamp of the alert's onset.
+        expires:
+          type: integer
+          format: int64
+          description: Unix timestamp when the alert expires.
+        description:
+          type: string
+          description: Detailed text description of the alert from the issuing authority.
+        uri:
+          type: string
+          format: uri
+          description: HTTP URI linking to the full text of the alert.
     ErrorResponse:
       type: object
       required:
@@ -296,46 +346,6 @@ components:
           - uk2
           - us
           description: Units used in the response.
-    Alert:
-      type: object
-      description: Severe weather alert issued by a governmental weather authority.
-      required:
-      - title
-      - time
-      - expires
-      - description
-      - uri
-      properties:
-        title:
-          type: string
-          description: Short text summary of the alert.
-        regions:
-          type: array
-          items:
-            type: string
-          description: Names of regions covered by the alert.
-        severity:
-          type: string
-          enum:
-          - advisory
-          - watch
-          - warning
-          description: Severity of the alert.
-        time:
-          type: integer
-          format: int64
-          description: Unix timestamp of the alert's onset.
-        expires:
-          type: integer
-          format: int64
-          description: Unix timestamp when the alert expires.
-        description:
-          type: string
-          description: Detailed text description of the alert from the issuing authority.
-        uri:
-          type: string
-          format: uri
-          description: HTTP URI linking to the full text of the alert.
     DataBlock:
       type: object
       description: 'A data block contains a human-readable summary and a data array of DataPoint objects.
@@ -352,22 +362,6 @@ components:
           items:
             $ref: '#/components/schemas/DataPoint'
           description: Array of data points for the block (one per minute, hour, or day).
-    Icon:
-      type: string
-      enum:
-      - clear-day
-      - clear-night
-      - rain
-      - snow
-      - sleet
-      - wind
-      - fog
-      - cloudy
-      - partly-cloudy-day
-      - partly-cloudy-night
-      description: 'Machine-readable icon name representing the weather conditions. Suitable for selecting an icon to display.
-
-        '
   parameters:
     longitude:
       name: longitude
@@ -379,23 +373,6 @@ components:
         format: double
         minimum: -180
         maximum: 180
-    latitude:
-      name: latitude
-      in: path
-      required: true
-      description: Latitude of the location, in decimal degrees (positive is north).
-      schema:
-        type: number
-        format: double
-        minimum: -90
-        maximum: 90
-    key:
-      name: key
-      in: path
-      required: true
-      description: Your Dark Sky API secret key.
-      schema:
-        type: string
     exclude:
       name: exclude
       in: query
@@ -413,6 +390,16 @@ components:
         excludeMultiple:
           value: minutely,hourly
           summary: Exclude minutely and hourly blocks
+    latitude:
+      name: latitude
+      in: path
+      required: true
+      description: Latitude of the location, in decimal degrees (positive is north).
+      schema:
+        type: number
+        format: double
+        minimum: -90
+        maximum: 90
     units:
       name: units
       in: query
@@ -429,6 +416,13 @@ components:
         - uk2
         - us
         default: auto
+    key:
+      name: key
+      in: path
+      required: true
+      description: Your Dark Sky API secret key.
+      schema:
+        type: string
     lang:
       name: lang
       in: query
