@@ -60,6 +60,59 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    DataBlock:
+      type: object
+      description: 'A data block contains a human-readable summary and a data array of DataPoint objects.
+
+        '
+      properties:
+        summary:
+          type: string
+          description: Human-readable text summary of the data block.
+        icon:
+          $ref: '#/components/schemas/Icon'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataPoint'
+          description: Array of data points for the block (one per minute, hour, or day).
+    ForecastResponse:
+      type: object
+      description: Top-level response from a forecast or time machine request.
+      required:
+      - latitude
+      - longitude
+      - timezone
+      properties:
+        latitude:
+          type: number
+          format: double
+          description: Latitude of the request location.
+        longitude:
+          type: number
+          format: double
+          description: Longitude of the request location.
+        timezone:
+          type: string
+          description: IANA timezone name for the requested location (e.g. "America/New_York").
+        offset:
+          type: number
+          description: Current timezone offset in hours from UTC.
+        currently:
+          $ref: '#/components/schemas/DataPoint'
+        minutely:
+          $ref: '#/components/schemas/DataBlock'
+        hourly:
+          $ref: '#/components/schemas/DataBlock'
+        daily:
+          $ref: '#/components/schemas/DataBlock'
+        alerts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Alert'
+          description: Array of severe weather alerts for the requested location.
+        flags:
+          $ref: '#/components/schemas/Flags'
     Icon:
       type: string
       enum:
@@ -76,6 +129,79 @@ components:
       description: 'Machine-readable icon name representing the weather conditions. Suitable for selecting an icon to display.
 
         '
+    Alert:
+      type: object
+      description: Severe weather alert issued by a governmental weather authority.
+      required:
+      - title
+      - time
+      - expires
+      - description
+      - uri
+      properties:
+        title:
+          type: string
+          description: Short text summary of the alert.
+        regions:
+          type: array
+          items:
+            type: string
+          description: Names of regions covered by the alert.
+        severity:
+          type: string
+          enum:
+          - advisory
+          - watch
+          - warning
+          description: Severity of the alert.
+        time:
+          type: integer
+          format: int64
+          description: Unix timestamp of the alert's onset.
+        expires:
+          type: integer
+          format: int64
+          description: Unix timestamp when the alert expires.
+        description:
+          type: string
+          description: Detailed text description of the alert from the issuing authority.
+        uri:
+          type: string
+          format: uri
+          description: HTTP URI linking to the full text of the alert.
+    ErrorResponse:
+      type: object
+      required:
+      - code
+      - error
+      properties:
+        code:
+          type: integer
+          description: HTTP status code.
+        error:
+          type: string
+          description: Human-readable description of the error.
+    Flags:
+      type: object
+      description: Metadata about the request, including data sources used.
+      properties:
+        sources:
+          type: array
+          items:
+            type: string
+          description: Machine-readable identifiers of weather data sources used.
+        nearest-station:
+          type: number
+          description: Distance to the nearest weather station in requested units.
+        units:
+          type: string
+          enum:
+          - auto
+          - ca
+          - si
+          - uk2
+          - us
+          description: Units used in the response.
     DataPoint:
       type: object
       description: 'A data point object contains various properties, each representing the average (or maximum, or minimum) of a particular weather phenomenon occurring during a period of time. All properties of a data point object are optional; it is possible, with some units, for a precipitation type property to be omitted.
@@ -236,170 +362,7 @@ components:
         ozone:
           type: number
           description: Columnar density of total atmospheric ozone in Dobson units.
-    Alert:
-      type: object
-      description: Severe weather alert issued by a governmental weather authority.
-      required:
-      - title
-      - time
-      - expires
-      - description
-      - uri
-      properties:
-        title:
-          type: string
-          description: Short text summary of the alert.
-        regions:
-          type: array
-          items:
-            type: string
-          description: Names of regions covered by the alert.
-        severity:
-          type: string
-          enum:
-          - advisory
-          - watch
-          - warning
-          description: Severity of the alert.
-        time:
-          type: integer
-          format: int64
-          description: Unix timestamp of the alert's onset.
-        expires:
-          type: integer
-          format: int64
-          description: Unix timestamp when the alert expires.
-        description:
-          type: string
-          description: Detailed text description of the alert from the issuing authority.
-        uri:
-          type: string
-          format: uri
-          description: HTTP URI linking to the full text of the alert.
-    ErrorResponse:
-      type: object
-      required:
-      - code
-      - error
-      properties:
-        code:
-          type: integer
-          description: HTTP status code.
-        error:
-          type: string
-          description: Human-readable description of the error.
-    ForecastResponse:
-      type: object
-      description: Top-level response from a forecast or time machine request.
-      required:
-      - latitude
-      - longitude
-      - timezone
-      properties:
-        latitude:
-          type: number
-          format: double
-          description: Latitude of the request location.
-        longitude:
-          type: number
-          format: double
-          description: Longitude of the request location.
-        timezone:
-          type: string
-          description: IANA timezone name for the requested location (e.g. "America/New_York").
-        offset:
-          type: number
-          description: Current timezone offset in hours from UTC.
-        currently:
-          $ref: '#/components/schemas/DataPoint'
-        minutely:
-          $ref: '#/components/schemas/DataBlock'
-        hourly:
-          $ref: '#/components/schemas/DataBlock'
-        daily:
-          $ref: '#/components/schemas/DataBlock'
-        alerts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Alert'
-          description: Array of severe weather alerts for the requested location.
-        flags:
-          $ref: '#/components/schemas/Flags'
-    Flags:
-      type: object
-      description: Metadata about the request, including data sources used.
-      properties:
-        sources:
-          type: array
-          items:
-            type: string
-          description: Machine-readable identifiers of weather data sources used.
-        nearest-station:
-          type: number
-          description: Distance to the nearest weather station in requested units.
-        units:
-          type: string
-          enum:
-          - auto
-          - ca
-          - si
-          - uk2
-          - us
-          description: Units used in the response.
-    DataBlock:
-      type: object
-      description: 'A data block contains a human-readable summary and a data array of DataPoint objects.
-
-        '
-      properties:
-        summary:
-          type: string
-          description: Human-readable text summary of the data block.
-        icon:
-          $ref: '#/components/schemas/Icon'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataPoint'
-          description: Array of data points for the block (one per minute, hour, or day).
   parameters:
-    longitude:
-      name: longitude
-      in: path
-      required: true
-      description: Longitude of the location, in decimal degrees (positive is east).
-      schema:
-        type: number
-        format: double
-        minimum: -180
-        maximum: 180
-    exclude:
-      name: exclude
-      in: query
-      required: false
-      description: 'Comma-separated list of data blocks to exclude from the response. Excluding unneeded blocks reduces latency and conserves bandwidth.
-
-        '
-      schema:
-        type: string
-        example: minutely,alerts
-      examples:
-        excludeMinutely:
-          value: minutely
-          summary: Exclude minutely block
-        excludeMultiple:
-          value: minutely,hourly
-          summary: Exclude minutely and hourly blocks
-    latitude:
-      name: latitude
-      in: path
-      required: true
-      description: Latitude of the location, in decimal degrees (positive is north).
-      schema:
-        type: number
-        format: double
-        minimum: -90
-        maximum: 90
     units:
       name: units
       in: query
@@ -416,6 +379,16 @@ components:
         - uk2
         - us
         default: auto
+    longitude:
+      name: longitude
+      in: path
+      required: true
+      description: Longitude of the location, in decimal degrees (positive is east).
+      schema:
+        type: number
+        format: double
+        minimum: -180
+        maximum: 180
     key:
       name: key
       in: path
@@ -493,6 +466,33 @@ components:
         - zh
         - zh-tw
         default: en
+    exclude:
+      name: exclude
+      in: query
+      required: false
+      description: 'Comma-separated list of data blocks to exclude from the response. Excluding unneeded blocks reduces latency and conserves bandwidth.
+
+        '
+      schema:
+        type: string
+        example: minutely,alerts
+      examples:
+        excludeMinutely:
+          value: minutely
+          summary: Exclude minutely block
+        excludeMultiple:
+          value: minutely,hourly
+          summary: Exclude minutely and hourly blocks
+    latitude:
+      name: latitude
+      in: path
+      required: true
+      description: Latitude of the location, in decimal degrees (positive is north).
+      schema:
+        type: number
+        format: double
+        minimum: -90
+        maximum: 90
   securitySchemes:
     ApiKeyPath:
       type: apiKey
