@@ -60,127 +60,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    DataBlock:
-      type: object
-      description: 'A data block contains a human-readable summary and a data array of DataPoint objects.
-
-        '
-      properties:
-        summary:
-          type: string
-          description: Human-readable text summary of the data block.
-        icon:
-          $ref: '#/components/schemas/Icon'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataPoint'
-          description: Array of data points for the block (one per minute, hour, or day).
-    ForecastResponse:
-      type: object
-      description: Top-level response from a forecast or time machine request.
-      required:
-      - latitude
-      - longitude
-      - timezone
-      properties:
-        latitude:
-          type: number
-          format: double
-          description: Latitude of the request location.
-        longitude:
-          type: number
-          format: double
-          description: Longitude of the request location.
-        timezone:
-          type: string
-          description: IANA timezone name for the requested location (e.g. "America/New_York").
-        offset:
-          type: number
-          description: Current timezone offset in hours from UTC.
-        currently:
-          $ref: '#/components/schemas/DataPoint'
-        minutely:
-          $ref: '#/components/schemas/DataBlock'
-        hourly:
-          $ref: '#/components/schemas/DataBlock'
-        daily:
-          $ref: '#/components/schemas/DataBlock'
-        alerts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Alert'
-          description: Array of severe weather alerts for the requested location.
-        flags:
-          $ref: '#/components/schemas/Flags'
-    Icon:
-      type: string
-      enum:
-      - clear-day
-      - clear-night
-      - rain
-      - snow
-      - sleet
-      - wind
-      - fog
-      - cloudy
-      - partly-cloudy-day
-      - partly-cloudy-night
-      description: 'Machine-readable icon name representing the weather conditions. Suitable for selecting an icon to display.
-
-        '
-    Alert:
-      type: object
-      description: Severe weather alert issued by a governmental weather authority.
-      required:
-      - title
-      - time
-      - expires
-      - description
-      - uri
-      properties:
-        title:
-          type: string
-          description: Short text summary of the alert.
-        regions:
-          type: array
-          items:
-            type: string
-          description: Names of regions covered by the alert.
-        severity:
-          type: string
-          enum:
-          - advisory
-          - watch
-          - warning
-          description: Severity of the alert.
-        time:
-          type: integer
-          format: int64
-          description: Unix timestamp of the alert's onset.
-        expires:
-          type: integer
-          format: int64
-          description: Unix timestamp when the alert expires.
-        description:
-          type: string
-          description: Detailed text description of the alert from the issuing authority.
-        uri:
-          type: string
-          format: uri
-          description: HTTP URI linking to the full text of the alert.
-    ErrorResponse:
-      type: object
-      required:
-      - code
-      - error
-      properties:
-        code:
-          type: integer
-          description: HTTP status code.
-        error:
-          type: string
-          description: Human-readable description of the error.
     Flags:
       type: object
       description: Metadata about the request, including data sources used.
@@ -202,6 +81,38 @@ components:
           - uk2
           - us
           description: Units used in the response.
+    DataBlock:
+      type: object
+      description: 'A data block contains a human-readable summary and a data array of DataPoint objects.
+
+        '
+      properties:
+        summary:
+          type: string
+          description: Human-readable text summary of the data block.
+        icon:
+          $ref: '#/components/schemas/Icon'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataPoint'
+          description: Array of data points for the block (one per minute, hour, or day).
+    Icon:
+      type: string
+      enum:
+      - clear-day
+      - clear-night
+      - rain
+      - snow
+      - sleet
+      - wind
+      - fog
+      - cloudy
+      - partly-cloudy-day
+      - partly-cloudy-night
+      description: 'Machine-readable icon name representing the weather conditions. Suitable for selecting an icon to display.
+
+        '
     DataPoint:
       type: object
       description: 'A data point object contains various properties, each representing the average (or maximum, or minimum) of a particular weather phenomenon occurring during a period of time. All properties of a data point object are optional; it is possible, with some units, for a precipitation type property to be omitted.
@@ -362,40 +273,96 @@ components:
         ozone:
           type: number
           description: Columnar density of total atmospheric ozone in Dobson units.
+    Alert:
+      type: object
+      description: Severe weather alert issued by a governmental weather authority.
+      required:
+      - title
+      - time
+      - expires
+      - description
+      - uri
+      properties:
+        title:
+          type: string
+          description: Short text summary of the alert.
+        regions:
+          type: array
+          items:
+            type: string
+          description: Names of regions covered by the alert.
+        severity:
+          type: string
+          enum:
+          - advisory
+          - watch
+          - warning
+          description: Severity of the alert.
+        time:
+          type: integer
+          format: int64
+          description: Unix timestamp of the alert's onset.
+        expires:
+          type: integer
+          format: int64
+          description: Unix timestamp when the alert expires.
+        description:
+          type: string
+          description: Detailed text description of the alert from the issuing authority.
+        uri:
+          type: string
+          format: uri
+          description: HTTP URI linking to the full text of the alert.
+    ErrorResponse:
+      type: object
+      required:
+      - code
+      - error
+      properties:
+        code:
+          type: integer
+          description: HTTP status code.
+        error:
+          type: string
+          description: Human-readable description of the error.
+    ForecastResponse:
+      type: object
+      description: Top-level response from a forecast or time machine request.
+      required:
+      - latitude
+      - longitude
+      - timezone
+      properties:
+        latitude:
+          type: number
+          format: double
+          description: Latitude of the request location.
+        longitude:
+          type: number
+          format: double
+          description: Longitude of the request location.
+        timezone:
+          type: string
+          description: IANA timezone name for the requested location (e.g. "America/New_York").
+        offset:
+          type: number
+          description: Current timezone offset in hours from UTC.
+        currently:
+          $ref: '#/components/schemas/DataPoint'
+        minutely:
+          $ref: '#/components/schemas/DataBlock'
+        hourly:
+          $ref: '#/components/schemas/DataBlock'
+        daily:
+          $ref: '#/components/schemas/DataBlock'
+        alerts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Alert'
+          description: Array of severe weather alerts for the requested location.
+        flags:
+          $ref: '#/components/schemas/Flags'
   parameters:
-    units:
-      name: units
-      in: query
-      required: false
-      description: 'Returns weather conditions in the requested units. Defaults to "auto". - auto: Automatically selects units based on geographic location. - ca: SI units, but with km/h for wind speed. - si: SI units (m/s for wind speed, Celsius for temperature). - uk2: SI units, but with miles for visibility and mph for wind speed. - us: Imperial units (the default for the United States).
-
-        '
-      schema:
-        type: string
-        enum:
-        - auto
-        - ca
-        - si
-        - uk2
-        - us
-        default: auto
-    longitude:
-      name: longitude
-      in: path
-      required: true
-      description: Longitude of the location, in decimal degrees (positive is east).
-      schema:
-        type: number
-        format: double
-        minimum: -180
-        maximum: 180
-    key:
-      name: key
-      in: path
-      required: true
-      description: Your Dark Sky API secret key.
-      schema:
-        type: string
     lang:
       name: lang
       in: query
@@ -445,7 +412,7 @@ components:
         - mr
         - ms
         - nl
-        - false
+        - 'no'
         - pa
         - pl
         - pt
@@ -466,6 +433,16 @@ components:
         - zh
         - zh-tw
         default: en
+    longitude:
+      name: longitude
+      in: path
+      required: true
+      description: Longitude of the location, in decimal degrees (positive is east).
+      schema:
+        type: number
+        format: double
+        minimum: -180
+        maximum: 180
     exclude:
       name: exclude
       in: query
@@ -483,6 +460,29 @@ components:
         excludeMultiple:
           value: minutely,hourly
           summary: Exclude minutely and hourly blocks
+    key:
+      name: key
+      in: path
+      required: true
+      description: Your Dark Sky API secret key.
+      schema:
+        type: string
+    units:
+      name: units
+      in: query
+      required: false
+      description: 'Returns weather conditions in the requested units. Defaults to "auto". - auto: Automatically selects units based on geographic location. - ca: SI units, but with km/h for wind speed. - si: SI units (m/s for wind speed, Celsius for temperature). - uk2: SI units, but with miles for visibility and mph for wind speed. - us: Imperial units (the default for the United States).
+
+        '
+      schema:
+        type: string
+        enum:
+        - auto
+        - ca
+        - si
+        - uk2
+        - us
+        default: auto
     latitude:
       name: latitude
       in: path
