@@ -51,6 +51,7 @@ tags:
   - Machine Learning
   - REST
   - Apple
+  - Defunct
 tags_raw:
   - Weather
   - Forecast
@@ -60,6 +61,7 @@ tags_raw:
   - REST
   - Apple
   - Machine-Learning
+  - Defunct
 apis:
 - aid: dark-sky:dark-sky-forecast-api
   name: Dark Sky Forecast API
