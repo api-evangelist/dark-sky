@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 name: Dark Sky Rate Limits
 description: Rate limiting rules that applied to the Dark Sky API before its shutdown on March 31, 2023.
 url: https://darksky.net/dev/docs
