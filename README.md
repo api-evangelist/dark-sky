@@ -64,53 +64,110 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Dark Sky was a hyperlocal weather forecast REST API that provided
-minute-by-minute precipitation forecasts, hourly weather conditions,
-and multi-day outlooks powered by machine-learning models.
+> **No longer operating.** This company or product has shut down, been discontinued, or been deprecated. This profile is kept as a historical record and is not maintained or rated.
 
-The API delivered real-time and historical weather data for any
-latitude and longitude worldwide, including current conditions,
-60-minute minutely precipitation intensity, 48-hour hourly forecasts,
-and 7-day daily summaries. Apple acquired Dark Sky in March 2020;
-new developer signups closed immediately, and the API was permanently
-shut down on March 31, 2023.
+Dark Sky is a hyperlocal weather forecast REST API (now part of Apple) that provided minute-by-minute precipitation forecasts, hourly weather conditions, and multi-day outlooks powered by machine-learning models. The API delivered real-time and historical weather data for any latitude and longitude worldwide, including current conditions, 60-minute minutely precipitation intensity, 48-hour hourly forecasts, and 7-day daily summaries. It was acquired by Apple in March 2020; new developer signups closed immediately, and the API was permanently shut down on March 31, 2023. Apple's WeatherKit REST API is the successor service.
 
-Apple's [WeatherKit](https://developer.apple.com/weatherkit/) REST API
-is the successor service.
+**Areas:** Weather · Forecast · Hyperlocal · Precipitation · Machine Learning · REST · Apple · Defunct
 
-## Base URL
+## Dark Sky on APIs.io (historical record)
 
-```
-https://api.darksky.net/forecast/{api_key}/{latitude},{longitude}
-```
+Everything profiled for Dark Sky is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/dark-sky/](https://apis.io/providers/dark-sky/)** — or go straight to one of the APIs or properties below.
 
-## Key Endpoints
+### APIs (2)
 
-| Endpoint | Description |
-|---|---|
-| `GET /forecast/{key}/{lat},{lng}` | Current and forecast weather for a location |
-| `GET /forecast/{key}/{lat},{lng},{time}` | Time Machine — historical or future conditions |
+- [Dark Sky Forecast API](https://apis.io/apis/dark-sky/dark-sky-forecast-api/) — Current and forecast weather data for a given location
+- [Dark Sky Time Machine API](https://apis.io/apis/dark-sky/dark-sky-time-machine-api/) — Historical or future weather data for a specific point in time
 
-## Response Data Blocks
+### Published properties
 
-- **currently** — Present conditions at the requested location
-- **minutely** — Minute-by-minute precipitation for the next 60 minutes
-- **hourly** — Hourly weather data for the next 48 hours
-- **daily** — Day-by-day summaries for the next 7 days
-- **alerts** — Severe weather alerts from official sources
-- **flags** — Metadata about the request
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Authentication
+#### Agentic access (1)
 
-API key passed as a path segment: `/forecast/{api_key}/...`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## Links
+- [Dark Sky Agentic Access](https://apis.io/agentic-access/dark-sky/dark-sky-agentic-access/)
 
-- Developer docs: https://darksky.net/dev/docs
-- GitHub org: https://github.com/darkskyapp
-- Successor API: https://developer.apple.com/weatherkit/
+#### JSON Schema (1)
 
-## APIs.json
+The data models the API reads and writes.
 
-This repository contains an [APIs.json 0.19](https://apisjson.org) profile
-describing the Dark Sky API for cataloging and discovery purposes.
+- [Dark Sky Forecast Response](https://apis.io/schemas/dark-sky/dark-sky-forecast-response/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Dark Sky Context](https://apis.io/jsonld/dark-sky/dark-sky-context/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Forecast Response](https://apis.io/examples/dark-sky/forecast-response/)
+- [Time Machine Response](https://apis.io/examples/dark-sky/time-machine-response/)
+
+#### Collections (2)
+
+Postman and Open Collection request collections.
+
+- [Dark Sky Forecast API](https://apis.io/collections/dark-sky/open-dark-sky-forecast-api/)
+- [Dark Sky Forecast Time Machine API](https://apis.io/collections/dark-sky/open-dark-sky-time-machine-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Dark Sky — jsonschema rules](https://apis.io/rules/dark-sky/dark-sky-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Dark Sky Authentication](https://apis.io/security/dark-sky/dark-sky-authentication/)
+- [Dark Sky Domain Security](https://apis.io/security/dark-sky/dark-sky-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Dark Sky Plans Pricing](https://apis.io/plans/dark-sky/dark-sky-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Dark Sky Rate Limits](https://apis.io/rate-limits/dark-sky/dark-sky-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Dark Sky Finops](https://apis.io/finops/dark-sky/dark-sky-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://darksky.net)
+- [Documentation](https://darksky.net/dev/docs)
+- [Pricing](https://darksky.net/dev)
+- [Blog](https://blog.darksky.net)
+- [Status](https://darksky.net/dev/console)
+
+## API Evangelist rating
+
+**Not rated** — this company is recorded as no longer operating, so no score is published. If it is in fact operating, say so on this repository and it will be re-profiled.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Dark Sky: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/dark-sky/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
